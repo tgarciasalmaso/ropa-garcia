@@ -1,0 +1,67 @@
+.storeControls{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.storeGrid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.storeControls{
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.storeControlGroup{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Search bar */
+.storeSearch{
+  position: relative;
+  width: min(360px, 100%);
+}
+
+.storeSearchIcon{
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.storeSearchInput{
+  width: 100%;
+  height: 46px;                 /* mismo alto que .btn */
+  padding: 0 14px 0 42px;       /* espacio para la lupa */
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  outline: none;
+}
+
+.storeSearchInput:focus{
+  border-color: #d7d7d2;
+}
+
+/* Tablet: 2 cards por fila */
+@media (max-width: 768px){
+  .storeGrid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 card por fila */
+@media (max-width: 480px){
+  .storeGrid{
+    grid-template-columns: 1fr;
+  }
+}

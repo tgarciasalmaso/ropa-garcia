@@ -1,0 +1,89 @@
+.productPage{
+    padding: 28px 0;
+  }
+  
+  .productLayout{
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 28px;
+    align-items: start;
+  }
+  
+  /* Galería */
+  .productGallery{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .productImg{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+  }
+  
+  /* Columna izquierda: scrollea solo la galería */
+  .productMediaCol{
+    max-height: calc(100vh - 96px);
+    overflow-y: auto;
+    padding-right: 0;
+  
+    /* Oculta scrollbar */
+    scrollbar-width: none;        /* Firefox */
+    -ms-overflow-style: none;     /* IE/Edge */
+  }
+  
+  .productMediaCol::-webkit-scrollbar{
+    display: none;                /* Chrome/Safari */
+  }
+  
+  /* Columna derecha: queda fija */
+  .productInfoCol{
+    position: sticky;
+    top: 96px; /* exacto: arranca justo debajo del header */
+  }
+  
+  .productBuyBtn{
+    width: 100%;
+  }
+
+  /* modificar po esta page el valor global*/
+  .productInfoCol .h1{
+    font-size: clamp(24px, 2.2vw, 30px);
+  }
+  
+  .productInfoCol .price{
+    font-size: 24px;
+  }
+
+  /* Mobile: todo normal (sin sticky/scroll raro) */
+  @media (max-width: 860px){
+
+    .productLayout{
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    .productMediaCol{
+      max-height: calc(100vh - 260px);
+      overflow-y: auto;
+      padding-right: 0;
+  
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+  
+    .productMediaCol::-webkit-scrollbar{
+      display: none;
+    }
+  
+    .productInfoCol{
+      position: static;
+    }
+  }
+
+  
+
+  

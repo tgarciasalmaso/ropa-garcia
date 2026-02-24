@@ -1,0 +1,68 @@
+.comprarPage{
+    padding: 28px 0;
+  }
+  
+  /* ===== Layout 2 columnas ===== */
+  .comprarLayout{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 64px;
+  }
+  
+  /* Columnas base */
+  .comprarCol{
+    min-width: 0;
+  }
+  
+  /* Izquierda: NO crece */
+  .comprarCol:first-child{
+    flex: 0 0 auto;   
+    max-width: 520px;
+  }
+  
+  /* Derecha: ocupa lo restante */
+  .comprarCol:last-child{
+    flex: 1 1 auto;
+  }
+  
+  /* ===== Form ===== */
+  .comprarForm{
+    width: 100%;
+  }
+  
+  .comprarInput{
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    outline: none;
+  }
+  
+  .comprarInput:focus{
+    border-color: #d7d7d2;
+  }
+  
+  .comprarSubmit{
+    width: 100%;
+  }
+  
+  /* ===== Mobile ===== */
+  @media (max-width: 860px){
+    .comprarLayout{
+      flex-direction: column;
+      gap: 28px;
+    }
+  
+    .comprarCol:first-child{
+      flex: 0 0 auto;
+      max-width: none;
+    }
+  
+    .comprarCol:last-child{
+      flex: 0 0 auto;
+    }
+  }

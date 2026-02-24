@@ -1,0 +1,107 @@
+/* Layout shell (depende del Outlet) */
+.appShell{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.siteMain{
+  flex: 1;
+  display: flex;
+  padding: 0;
+  min-height: 0;
+}
+
+.siteMain .container{
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+/* ========= Header ========= */
+.siteHeader{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(246, 246, 244, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.headerInner{
+  width: 100%;
+}
+
+.headerContent{
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerLeft{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brandMarkLarge{
+  width: 150px;
+  height: auto;
+  border-radius: 18px;
+  cursor: pointer;
+}
+
+/* Botones navbar: tipografía la da .ui en JSX */
+.navBtn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.navBtn:hover{
+  transform: translateY(-1px);
+  border-color: #d7d7d2;
+}
+
+.navBtn.active{
+  background: var(--text);
+  color: var(--surface);
+  border-color: var(--text);
+}
+
+/* ========= Footer ========= */
+.siteFooter{
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.footerInner{
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========= Responsive ========= */
+@media (max-width: 520px){
+  .headerInner{
+    height: 72px;
+  }
+
+  .brandMarkLarge{
+    width: 120px;
+    border-radius: 16px;
+  }
+
+  .navBtn{
+    height: 36px;
+    padding: 0 12px;
+  }
+}
