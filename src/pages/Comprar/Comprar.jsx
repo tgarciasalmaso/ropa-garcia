@@ -6,6 +6,9 @@ import ComprarItemCard from "../../components/ComprarItemCard/ComprarItemCard";
 import "./Comprar.css";
 
 export default function Comprar() {
+  const WHATSAPP_PHONE = "5491169212626";
+
+
   const { slug } = useParams();
 
   const product = useMemo(
@@ -36,14 +39,53 @@ export default function Comprar() {
   function handleSubmit(e) {
     e.preventDefault();
   
-    const { fullName, phone, address } = form;
+    const nombreCliente = form.fullName.trim();
+    const telefono = form.phone.trim();
+    const direccion = form.address.trim();
   
-    if (!fullName || !phone || !address) {
-      alert("Por favor completá todos los campos.");
+    if (!nombreCliente || !telefono || !direccion) {
+      alert("Por favor completá nombre, teléfono y dirección.");
       return;
     }
   
-    alert(`Producto comprado: ${product.name} 🎉`);
+    const urlProducto = `${window.location.origin}/product/${product.slug}`;
+    const fecha = new Date().toLocaleString("es-AR");
+  
+    const payload = {
+      slug: product.slug,
+      nombreProducto: product.name,
+      urlProducto,
+      precio: product.price,
+      marca: product.brand || "",
+      nombreCliente,
+      telefono,
+      direccion,
+      fecha,
+    };
+  
+  
+    // ✅ Abre WhatsApp listo para enviar
+    const lines = [
+      "🧾 *Nueva compra — Ropa García*",
+      "",
+      `👕 *Producto:* ${product.name}`,
+      `🏷️ *Marca:* ${product.brand || "-"}`,
+      `📏 *Talle:* ${product.size || "-"}`,
+      `💰 *Precio:* $${product.price}`,
+      "",
+      "📦 *Datos del comprador*",
+      `• Nombre: ${nombreCliente}`,
+      `• Teléfono: ${telefono}`,
+      `• Dirección: ${direccion}`,
+      "",
+      `🔗 Link del producto: ${urlProducto}`,
+      `🕒 Fecha: ${fecha}`,
+    ];
+  
+    const text = encodeURIComponent(lines.join("\n"));
+    window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${text}`, "_blank", "noopener,noreferrer");
+  
+    alert("Pedido registrado ✅ (y WhatsApp listo para enviar)");
   }
 
   if (!product) {
@@ -112,6 +154,8 @@ export default function Comprar() {
               Al enviar, coordinamos por WhatsApp el pago y el envío.
             </p>
           </form>
+
+          
         </section>
       </div>
     </div>
