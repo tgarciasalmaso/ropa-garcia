@@ -1,0 +1,21 @@
+2️⃣ Pasar código SOLO cuando:
+A) Vas a modificar ese archivo
+
+Ej:
+
+“Vamos a mejorar Product.jsx”
+→ Pegás Product.jsx actual.
+
+B) Hay un bug específico
+
+Ej:
+
+“No funciona el scroll sticky”
+→ Pegás ese archivo + CSS relacionado.
+
+C) Hay una decisión estructural
+
+Ej:
+
+“No me gusta cómo está armado el layout”
+→ Pegás Layout.jsx + CSS.

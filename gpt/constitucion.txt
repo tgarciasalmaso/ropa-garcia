@@ -1,0 +1,225 @@
+ROPA GARCÍA — CONSTITUCIÓN TÉCNICA
+
+(ARCHITECTURE.md)
+
+1. Identidad del Proyecto
+
+Ropa García no es una marca de moda tradicional.
+
+Es:
+
+Curaduría personal
+
+Minimalismo
+
+Producto único
+
+Transparencia
+
+Simplicidad funcional
+
+La tecnología acompaña esa identidad.
+Nunca la complica.
+
+2. Principios Innegociables
+2.1 MVP Primero
+
+Siempre priorizar:
+
+Funciona > Perfecto
+Visible > Invisible
+Simple > Sofisticado
+
+No se implementan capas de complejidad sin necesidad real.
+
+2.2 No Sobreingeniería
+
+Prohibido:
+
+Backend innecesario
+
+Infraestructura compleja
+
+Librerías pesadas sin justificación
+
+Cambios estructurales por capricho técnico
+
+2.3 Arquitectura Clara
+
+El proyecto debe poder ser entendido en 10 minutos por cualquier dev.
+
+Si algo requiere explicación larga, está mal diseñado.
+
+2.4 Separación de Capas
+
+El proyecto está dividido en:
+
+Global
+
+Component
+
+Page
+
+Cada capa tiene responsabilidades claras.
+
+Nunca mezclar responsabilidades.
+
+3. Stack Oficial
+
+React
+
+Vite
+
+React Router
+
+CSS tradicional (NO Tailwind, NO frameworks CSS)
+
+Cloudinary (imágenes)
+
+Google Apps Script (endpoint simple)
+
+Google Sheets (backoffice)
+
+Vercel (deploy)
+
+Nada más.
+
+4. Sistema CSS (Regla Sagrada)
+
+Existe un Global.css.
+
+Define:
+
+Variables :root
+
+Escala tipográfica (.h1 .h2 .h3 .text .price etc)
+
+Botones base (.btn, .btnPrimary)
+
+Helpers (.stack-*)
+
+Contenedores (.container)
+
+Regla:
+
+Si existe clase global → se usa.
+No se reinventan tamaños.
+No se duplican estilos.
+
+El CSS de componente solo define:
+
+Layout específico
+
+Grid
+
+Flex
+
+Ajustes particulares
+
+Nunca redefinir tipografía base en componentes.
+
+5. Estructura de Carpetas Oficial
+src/
+  components/
+    ProductCard/
+      ProductCard.jsx
+      ProductCard.css
+    ComprarProductCard/
+      ComprarProductCard.jsx
+      ComprarProductCard.css
+
+  pages/
+    Home/
+      Home.jsx
+      Home.css
+    Store/
+      Store.jsx
+      Store.css
+    Product/
+      Product.jsx
+      Product.css
+    Comprar/
+      Comprar.jsx
+      Comprar.css
+
+  data/
+    products.js
+    categories.js
+
+  utils/
+    cloudinary.js
+
+  styles/
+    Global.css
+    Layout.css
+
+App.jsx
+main.jsx
+
+Esta estructura es estable.
+No se cambia sin justificación arquitectónica real.
+
+6. Convenciones de Datos
+Producto
+{
+  slug: string (identificador único)
+  name: string
+  category: string
+  price: number
+  imageCount: number
+  description: string
+  brand: string
+  size: string
+}
+
+slug es el identificador oficial.
+
+Cloudinary usa slug como carpeta.
+
+Las imágenes se numeran 1, 2, 3…
+
+imageCount define cuántas hay.
+
+7. Sistema de Imágenes
+
+Cloudinary:
+
+https://res.cloudinary.com/<cloud>/image/upload/w_600,q_auto,f_auto/<slug>/1
+
+Se usa transformación automática.
+No se guardan URLs completas innecesarias.
+Se construyen dinámicamente.
+
+8. Sistema de Pedidos
+
+Frontend:
+
+Envía datos a Apps Script.
+
+Luego abre WhatsApp con wa.me.
+
+Backoffice:
+
+Google Sheet privado.
+
+No se comparte con terceros.
+
+Pendientes y Publicados separados en archivos distintos.
+
+9. Filosofía de Trabajo
+
+Existe sistema:
+
+Días de HACER
+Días de PENSAR
+
+En días de HACER:
+No se frena por ideas futuras.
+
+En días de PENSAR:
+Se evalúa arquitectura y amenazas.
+
+10. Regla Final
+
+La arquitectura acompaña.
+No reemplaza el avance visible.

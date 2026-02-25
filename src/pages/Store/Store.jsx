@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { products } from "../../data/products";
-import { categories } from "../../data/cateogories.js";
+import { categories } from "../../data/categories.js";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import "./Store.css";
 

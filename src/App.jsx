@@ -14,9 +14,9 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="store" element={<Store />} />
         <Route path="product/:slug" element={<Product />} />
-        <Route path="/comprar/:slug" element={<Comprar />} />
+        <Route path="comprar/:slug" element={<Comprar />} />
         <Route path="store/*" element={<h1>Producto no disponible!</h1>} />
-        <Route path="/quienes-somos" element={<QuienesSomos />} />
+        <Route path="quienes-somos" element={<QuienesSomos />} />
 
 
         <Route path="*" element={<h1>Error 404. Not found.</h1>} />
