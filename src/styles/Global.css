@@ -184,7 +184,9 @@ Elimina estilos por defecto innecesarios.
   .btn:hover{
     transform: translateY(-1px);
     border-color: #d7d7d2;
+    cursor:pointer;
   }
+
 
 
   .btnPrimary{

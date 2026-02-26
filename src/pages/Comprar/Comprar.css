@@ -50,6 +50,11 @@
     width: 100%;
   }
   
+  .comprarSubmit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
   /* ===== Mobile ===== */
   @media (max-width: 860px){
     .comprarLayout{

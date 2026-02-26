@@ -2,10 +2,13 @@ import { useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { products } from "../../data/products";
 import { buildCloudinaryUrl } from "../../utils/cloudinary";
+import { registrarPedido } from "../../utils/pedidos";
 import ComprarItemCard from "../../components/ComprarItemCard/ComprarItemCard";
 import "./Comprar.css";
 
+
 export default function Comprar() {
+  const [loading, setLoading] = useState(false);
   const WHATSAPP_PHONE = "5491169212626";
 
 
@@ -36,8 +39,10 @@ export default function Comprar() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+  
+    if (loading) return; // evita doble click
   
     const nombreCliente = form.fullName.trim();
     const telefono = form.phone.trim();
@@ -47,6 +52,8 @@ export default function Comprar() {
       alert("Por favor completá nombre, teléfono y dirección.");
       return;
     }
+  
+    setLoading(true);
   
     const urlProducto = `${window.location.origin}/product/${product.slug}`;
     const fecha = new Date().toLocaleString("es-AR");
@@ -63,29 +70,39 @@ export default function Comprar() {
       fecha,
     };
   
+    try {
+      await registrarPedido(payload);
   
-    // ✅ Abre WhatsApp listo para enviar
-    const lines = [
-      "🧾 *Nueva compra — Ropa García*",
-      "",
-      `👕 *Producto:* ${product.name}`,
-      `🏷️ *Marca:* ${product.brand || "-"}`,
-      `📏 *Talle:* ${product.size || "-"}`,
-      `💰 *Precio:* $${product.price}`,
-      "",
-      "📦 *Datos del comprador*",
-      `• Nombre: ${nombreCliente}`,
-      `• Teléfono: ${telefono}`,
-      `• Dirección: ${direccion}`,
-      "",
-      `🔗 Link del producto: ${urlProducto}`,
-      `🕒 Fecha: ${fecha}`,
-    ];
+      const lines = [
+        "🧾 *Nueva compra — Ropa García*",
+        "",
+        `👕 *Producto:* ${product.name}`,
+        `🏷️ *Marca:* ${product.brand || "-"}`,
+        `📏 *Talle:* ${product.size || "-"}`,
+        `💰 *Precio:* $${product.price}`,
+        "",
+        "📦 *Datos del comprador*",
+        `• Nombre: ${nombreCliente}`,
+        `• Teléfono: ${telefono}`,
+        `• Dirección: ${direccion}`,
+        "",
+        `🔗 Link del producto: ${urlProducto}`,
+        `🕒 Fecha: ${fecha}`,
+      ];
   
-    const text = encodeURIComponent(lines.join("\n"));
-    window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${text}`, "_blank", "noopener,noreferrer");
+      const text = encodeURIComponent(lines.join("\n"));
   
-    alert("Pedido registrado ✅ (y WhatsApp listo para enviar)");
+      window.open(
+        `https://wa.me/${WHATSAPP_PHONE}?text=${text}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
+  
+    } catch (err) {
+      alert("No se pudo registrar el pedido ❌");
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (!product) {
@@ -146,8 +163,12 @@ export default function Comprar() {
                 />
             </div>
   
-            <button className="btn btnPrimary comprarSubmit" type="submit">
-              Enviar datos
+            <button
+              className="btn btnPrimary comprarSubmit"
+              type="submit"
+              disabled={loading}
+              >
+                {loading ? "Enviando..." : "Enviar datos"}
             </button>
   
             <p className="uiMuted">
