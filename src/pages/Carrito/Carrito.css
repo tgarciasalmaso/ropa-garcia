@@ -1,0 +1,157 @@
+.carritoZoneHelp {
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+.carritoModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 100;
+  animation: carritoFadeIn 180ms ease;
+}
+
+.carritoModal {
+  position: relative;
+  width: min(700px, 92vw);
+  max-height: 85vh;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  animation: carritoModalIn 220ms ease;
+  overflow: auto;
+}
+
+.carritoZoneMapImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+@keyframes carritoFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes carritoModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.carritoPage{
+    padding:28px 0;
+  }
+  .carritoTotals {
+    width: 100%;
+  }
+  
+  /* layout */
+  
+  .carritoLayout{
+    display:flex;
+    gap:64px;
+    align-items:flex-start;
+  }
+  
+  
+  /* left */
+  
+  .carritoLeft{
+    flex:1;
+    min-width:0;
+  }
+  
+  .carritoItemsBox{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px;
+    background:var(--surface);
+  
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  
+    max-height:60vh;
+  }
+  
+  
+  .carritoGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    overflow:auto;
+  }
+  
+  
+  .carritoGridItem{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  
+  
+  .carritoRemove{
+    width:100%;
+  }
+  
+  
+  .carritoClear{
+    width:100%;
+  }
+  
+  
+  .carritoSubtotal{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  
+  
+  
+  /* right */
+  
+  .carritoRight{
+    flex:0 0 380px;
+  }
+  
+  
+  
+  /* responsive */
+  
+  @media (max-width:900px){
+  
+    .carritoLayout{
+      flex-direction:column;
+    }
+  
+    .carritoRight{
+      flex:none;
+    }
+  
+    .carritoGrid{
+      grid-template-columns:1fr;
+    }
+  
+  }

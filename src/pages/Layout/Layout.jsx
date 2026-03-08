@@ -25,8 +25,11 @@ export default function Layout() {
                 ¿Quiénes somos?
               </NavLink>
             </div>
-
-            <div />
+            <div className="headerRight">
+                <NavLink to="/carrito" className="navBtn ui">
+                🛒 Carrito
+              </NavLink>
+            </div>
           </div>
         </div>
       </header>

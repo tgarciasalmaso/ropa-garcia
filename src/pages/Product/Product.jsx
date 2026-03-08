@@ -2,9 +2,11 @@ import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { products } from "../../data/products";
 import { buildCloudinaryUrl } from "../../utils/cloudinary";
+import { addToCart, removeFromCart, getCart } from "../../utils/cart";
 import "./Product.css";
 
 export default function Product() {
+  
   const { slug } = useParams();
 
   const product = useMemo(
@@ -26,10 +28,29 @@ export default function Product() {
 
   const images = Array.from({ length: product.imageCount }, (_, i) => i + 1);
 
+  const isInCart = getCart().some((item) => item.slug === product.slug);
+
+  function handleAddToCart() {
+    const result = addToCart(product);
+
+    if (!result.ok) {
+      alert("Ese producto ya está en el carrito.");
+      return;
+    }
+
+    alert("Producto agregado al carrito ✅");
+    window.location.reload();
+  }
+
+  function handleRemoveFromCart() {
+    removeFromCart(product.slug);
+    alert("Producto eliminado del carrito");
+    window.location.reload();
+  }
+
   return (
     <div className="productPage container">
       <div className="productLayout">
-        {/* Izquierda: galería scrolleable */}
         <div className="productMediaCol">
           <div className="productGallery stack-12">
             {images.map((n) => (
@@ -44,7 +65,6 @@ export default function Product() {
           </div>
         </div>
 
-        {/* Derecha: info sticky */}
         <aside className="productInfoCol">
           <div className="productInfo stack-16">
             <h1 className="h1">{product.name}</h1>
@@ -59,12 +79,23 @@ export default function Product() {
               </p>
             </div>
 
-            <Link
-              to={`/comprar/${product.slug}`}
-              className="btn btnPrimary productBuyBtn"
-            >
-              Comprar
-            </Link>
+            {isInCart ? (
+              <button
+                className="btn btnPrimary comprarSubmit"
+                type="button"
+                onClick={handleRemoveFromCart}
+              >
+                Sacar del carrito
+              </button>
+            ) : (
+              <button
+                className="btn btnPrimary comprarSubmit"
+                type="button"
+                onClick={handleAddToCart}
+              >
+                Agregar al carrito
+              </button>
+            )}
 
             <p className="text">{product.description}</p>
           </div>

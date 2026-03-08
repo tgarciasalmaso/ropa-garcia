@@ -45,6 +45,12 @@
   gap: 16px;
 }
 
+.headerRight{
+  display: flex;
+  align-items: start;
+  gap: 12px;
+}
+
 .brandMarkLarge{
   width: 150px;
   height: auto;

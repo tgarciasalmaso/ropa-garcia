@@ -5,6 +5,7 @@ import Store from "./pages/Store/Store.jsx";
 import Product from "./pages/Product/Product.jsx";
 import QuienesSomos from "./pages/QuienesSomos/QuienesSomos.jsx";
 import Comprar from "./pages/Comprar/Comprar.jsx";
+import Carrito from "./pages/Carrito/Carrito";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="comprar/:slug" element={<Comprar />} />
         <Route path="store/*" element={<h1>Producto no disponible!</h1>} />
         <Route path="quienes-somos" element={<QuienesSomos />} />
+        <Route path="carrito" element={<Carrito />} />
 
 
         <Route path="*" element={<h1>Error 404. Not found.</h1>} />
